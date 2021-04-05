@@ -72,6 +72,19 @@ client.connect(err => {
             })
     })
 
+    app.delete('/delete/:id', (req, res) => {
+       const id = ObjectId(req.params.id);
+       gadgetsCollection
+       .findOneAndDelete({_id:id})
+       .then((documents)=> res.send(documents.value))
+
+        // gadgetsCollection.deleteOne({ _id: ObjectId(req.params.id)})
+        //     .then(result => {
+        //         console.log(result.insertedCount);
+        //         res.send(result.deletedCount > 0);
+        //     })
+    })
+
 });
 
 
